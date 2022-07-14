@@ -1,4 +1,5 @@
 ﻿using E_Commerce.eTickets.WebSite.data;
+using eTickets.Data.Static;
 using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -15,10 +16,20 @@ namespace eTickets.Data.Services
             _context = context;
         }
 
-        public async Task<List<Order>> GetOrdersByUserIdAsync(string userId) => await _context.Orders.Include(x => x.OrderItems)
-            .ThenInclude(x => x.Movie)
-            .Where(x => x.UserId == userId)
-            .ToListAsync();
+        public async Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole)
+        {
+            var orders = await _context.Orders
+             .Include(x => x.OrderItems)
+             .ThenInclude(x => x.Movie)
+             .Include(x => x.User)
+             .ToListAsync();
+            if (userRole != UserRoles.Admin)
+            {
+                orders = orders.Where(x => x.UserId == userId).ToList();
+            }
+
+            return orders;
+        }
 
 
         public async Task StoreOrder(List<ShoppingCartItem> items, string userId, string userEmailAdress)
