@@ -1,0 +1,45 @@
+﻿@using eTickets.Models
+@model List<Order>
+@{
+    ViewData["Title"] = "all orders";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>List of all orders</h4>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@item.Id</td>
+                        <td class="align-middle">
+                            <ul style="list-style-type:none;">
+                                @foreach (var itemItems in item.OrderItems)
+                               {
+                                   <li>
+                                       <div class="alert alert-info" role="alert">
+                                           <span class="badge bg-success">@itemItems.Amount</span> [@itemItems.Price.ToString("c")] - @itemItems.Movie.Name
+                                       </div>
+                                   </li>
+                               }
+                            </ul>
+                        </td>
+                        <td class="align-middle">@item.OrderItems.Select(i => i.Movie.Price * i.Amount).Sum().ToString("c")</td>
+                        <td class="align-middle"> - </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

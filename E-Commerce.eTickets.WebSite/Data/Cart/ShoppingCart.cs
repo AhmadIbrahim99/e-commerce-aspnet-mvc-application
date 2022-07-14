@@ -72,5 +72,11 @@ namespace eTickets.Data.Cart
         public double GetShopingCartTotal() => _context.ShoppingCartItems
             .Where(x => x.ShopingCartId == ShoppingCartId)
                 .Select(x => x.Movie.Price * x.Amount).Sum();
+        public async Task ClearShoppingCart()
+        {
+            var items = await _context.ShoppingCartItems.Where(x => x.ShopingCartId == ShoppingCartId).ToListAsync();
+            _context.ShoppingCartItems.RemoveRange(items);
+            await _context.SaveChangesAsync();
+        }
     }
 }

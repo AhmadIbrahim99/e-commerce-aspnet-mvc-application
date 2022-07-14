@@ -12,7 +12,10 @@
                     <th>@Html.DisplayNameFor(model=> model.ProfilePictureURL)</th>
                     <th>@Html.DisplayNameFor(model=> model.FullName)</th>
                     <th>@Html.DisplayNameFor(model=> model.Bio)</th>
-                    <th>Actions</th>
+                    @if (@User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                    {
+                        <th>Actions</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -24,11 +27,14 @@
                         </td>
                         <td class="align-middle">@Html.DisplayFor(actorModel => actor.FullName)</td>
                         <td class="align-middle">@Html.DisplayFor(actorModel => actor.Bio)</td>
-                        <td class="align-middle">
-                            <a asp-action="Edit" asp-route-id="@actor.Id" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit </a> |
-                            <a asp-action="Details" asp-route-id="@actor.Id" class="btn btn-outline-info"><i class="bi bi-eye"></i>Details </a> |
-                            <a asp-action="Delete" asp-route-id="@actor.Id" class="btn btn-danger" style="color:white;"><i class="bi bi-trash"></i>Delete </a>
-                        </td>
+                        @if (@User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                        {
+                            <td class="align-middle">
+                                <a asp-action="Edit" asp-route-id="@actor.Id" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit </a> |
+                                <a asp-action="Details" asp-route-id="@actor.Id" class="btn btn-outline-info"><i class="bi bi-eye"></i>Details </a> |
+                                <a asp-action="Delete" asp-route-id="@actor.Id" class="btn btn-danger" style="color:white;"><i class="bi bi-trash"></i>Delete </a>
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>
