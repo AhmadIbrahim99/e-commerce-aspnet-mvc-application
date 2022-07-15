@@ -15,24 +15,25 @@ what did i used?!
 --------
 1- You can register and log in to see whats in the website.
 2- PayPal developer account to try the payment method.
-
+3- You will see that i used validation on CRUD pages, Register and Login
+<hr/>
 admin acount
 admin@ahmadetickts.com
 pass
 Coding@1234?
-
-pages
-Movies - CRUD
-Actors - CRUD
-Cinema - CRUD
-Producer - CRUD
-Login
-Register
-All Users
-Orders screen
-Bag Screen
-Completed Order
+<hr/>
+pages?
+1. Movies - CRUD
+2. Actors - CRUD
+3. Cinema - CRUD
+4. Producer - CRUD
+5. Login
+6. Register
+7. All Users
+8. Orders screen
+9. Cart Screen
+10. Completed Order
 etc...
-
+<hr/>
 I hope you enjoyed.
 By Ahmad Ibrahim Abo Naja.
