@@ -1,6 +1,6 @@
 Hello
 you Can see the website by install the code and do update-database then run project
-// <a href="https://ahmadibrahim-etikets.azurewebsites.net/">Ahmad eTikets</a>
+/* <a href="https://ahmadibrahim-etikets.azurewebsites.net/">Ahmad eTikets</a> */
 what did i used?!
 1. asp.net
 2. MVC
